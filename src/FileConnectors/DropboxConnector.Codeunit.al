@@ -1,4 +1,4 @@
-codeunit 60601 DropboxConnectorAJK
+codeunit 60601 DropboxConnectorAJK implements IFileConnectorAJK
 {
     Access = Internal;
     procedure SaveFile(FileName: Text; FileContent: Text) Success: Boolean

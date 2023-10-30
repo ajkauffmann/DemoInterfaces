@@ -1,4 +1,4 @@
-codeunit 60600 SharePointConnectorAJK
+codeunit 60600 SharePointConnectorAJK implements IFileConnectorAJK
 {
     Access = Internal;
     procedure SaveFile(FileName: Text; FileContent: Text) Success: Boolean

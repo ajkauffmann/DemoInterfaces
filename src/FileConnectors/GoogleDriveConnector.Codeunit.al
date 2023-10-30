@@ -1,4 +1,4 @@
-codeunit 60602 GoogleDriveConnectorAJK
+codeunit 60602 GoogleDriveConnectorAJK implements IFileConnectorAJK
 {
     Access = Internal;
     procedure SaveFile(FileName: Text; FileContent: Text) Success: Boolean
