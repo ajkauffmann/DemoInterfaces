@@ -11,7 +11,12 @@ codeunit 60603 FileConnectorAJK
         DropboxConnectorAJK: Codeunit DropboxConnectorAJK;
         GoogleDriveConnectorAJK: Codeunit GoogleDriveConnectorAJK;
         SharePointConnectorAJK: Codeunit SharePointConnectorAJK;
+        IsHandled: Boolean;
     begin
+        OnBeforeSaveFile(FileName, FileContent, Success, IsHandled);
+        if IsHandled then
+            exit;
+
         GetSetup();
         case FileConnectorSetupAJK.Connector of
             FileConnectorSetupAJK.Connector::Dropbox:
@@ -28,7 +33,12 @@ codeunit 60603 FileConnectorAJK
         DropboxConnectorAJK: Codeunit DropboxConnectorAJK;
         GoogleDriveConnectorAJK: Codeunit GoogleDriveConnectorAJK;
         SharePointConnectorAJK: Codeunit SharePointConnectorAJK;
+        IsHandled: Boolean;
     begin
+        OnBeforeGetFile(FileName, Content, IsHandled);
+        if IsHandled then
+            exit;
+
         GetSetup();
         case FileConnectorSetupAJK.Connector of
             FileConnectorSetupAJK.Connector::Dropbox:
@@ -45,7 +55,12 @@ codeunit 60603 FileConnectorAJK
         DropboxConnectorAJK: Codeunit DropboxConnectorAJK;
         GoogleDriveConnectorAJK: Codeunit GoogleDriveConnectorAJK;
         SharePointConnectorAJK: Codeunit SharePointConnectorAJK;
+        IsHandled: Boolean;
     begin
+        OnBeforeDeleteFile(FileName, Success, IsHandled);
+        if IsHandled then
+            exit;
+
         GetSetup();
         case FileConnectorSetupAJK.Connector of
             FileConnectorSetupAJK.Connector::Dropbox:
@@ -56,6 +71,22 @@ codeunit 60603 FileConnectorAJK
                 Success := SharePointConnectorAJK.DeleteFile(FileName);
         end;
     end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeSaveFile(FileName: Text; FileContent: Text; var Success: Boolean; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeGetFile(FileName: Text; Content: Text; var IsHandled: Boolean)
+    begin
+    end;
+
+    [IntegrationEvent(false, false)]
+    local procedure OnBeforeDeleteFile(FileName: Text; var Success: Boolean; var IsHandled: Boolean)
+    begin
+    end;
+
 
     local procedure GetSetup()
     begin
