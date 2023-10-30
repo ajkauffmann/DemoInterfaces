@@ -31,30 +31,12 @@ codeunit 60603 FileConnectorAJK
     end;
 
     local procedure GetFileConnector() IFileConnector: Interface IFileConnectorAJK
-    var
-        DropboxConnectorAJK: Codeunit DropboxConnectorAJK;
-        GoogleDriveConnectorAJK: Codeunit GoogleDriveConnectorAJK;
-        SharePointConnectorAJK: Codeunit SharePointConnectorAJK;
     begin
         if not SetupRead then begin
             FileConnectorSetupAJK.Get;
             SetupRead := true;
         end;
 
-        case FileConnectorSetupAJK.Connector of
-            FileConnectorSetupAJK.Connector::Dropbox:
-                IFileConnector := DropboxConnectorAJK;
-            FileConnectorSetupAJK.Connector::GoogleDrive:
-                IFileConnector := GoogleDriveConnectorAJK;
-            FileConnectorSetupAJK.Connector::SharePoint:
-                IFileConnector := SharePointConnectorAJK;
-            else
-                OnGetFileConnector(IFileConnector);
-        end;
-    end;
-
-    [IntegrationEvent(false, false)]
-    local procedure OnGetFileConnector(var IFileConnector: Interface IFileConnectorAJK)
-    begin
+        IFileConnector := FileConnectorSetupAJK.Connector;
     end;
 }
