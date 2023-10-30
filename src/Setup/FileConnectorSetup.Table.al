@@ -5,10 +5,6 @@ table 60600 FileConnectorSetupAJK
     fields
     {
         field(1; Code; Code[10]) { }
-        field(2; Connector; Option)
-        {
-            OptionMembers = Dropbox,GoogleDrive,SharePoint;
-            OptionCaption = 'Dropbox,Google Drive,SharePoint';
-        }
+        field(2; Connector; Enum FileConnectorAJK) { }
     }
 }
