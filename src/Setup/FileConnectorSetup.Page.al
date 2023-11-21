@@ -30,7 +30,7 @@ page 60600 FileConnectorSetupAJK
                 var
                     FileConnectorAJK: Codeunit FileConnectorAJK;
                 begin
-                    FileConnectorAJK.SaveFile('Test.txt', 'Hello World!', Rec.Connector);
+                    FileConnectorAJK.SaveFile('Test.txt', 'Hello World!');
                 end;
             }
         }
