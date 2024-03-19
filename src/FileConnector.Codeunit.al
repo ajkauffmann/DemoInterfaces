@@ -4,8 +4,11 @@ codeunit 60603 FileConnectorAJK
 
     procedure SaveFile(FileName: Text; FileContent: Text) Success: Boolean
     var
+        FileConnectorSetup: Record FileConnectorSetupAJK;
         IFileConnector: Interface IFileConnectorAJK;
     begin
+        FileConnectorSetup.Get();
+        IFileConnector := FileConnectorSetup.Connector;
         Success := SaveFile(FileName, FileContent, IFileConnector);
     end;
 
